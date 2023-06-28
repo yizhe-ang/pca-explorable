@@ -1,9 +1,9 @@
+import dsv from "@rollup/plugin-dsv";
+import path from "path";
 import { readFileSync } from "fs";
 import { sveltekit } from '@sveltejs/kit/vite';
-import { timeFormat } from "d3";
-import path from "path";
 import svg from "vite-plugin-svgstring";
-import dsv from "@rollup/plugin-dsv";
+import { timeFormat } from "d3";
 
 const { version } = JSON.parse(readFileSync("package.json", "utf8"));
 const timestamp = timeFormat("%Y-%m-%d-%H:%M")(new Date());
@@ -29,7 +29,10 @@ const config = {
 			"$svg": path.resolve("./src/svg"),
 			"$utils": path.resolve("./src/utils")
 		}
-	}
+	},
+  ssr: {
+    noExternal: ['three']
+  }
 };
 
 export default config;

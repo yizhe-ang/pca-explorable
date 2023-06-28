@@ -1,4 +1,14 @@
+import { PCA } from "ml-pca"
+import { autoType } from "d3";
+import iris from "$data/iris.csv";
+
 export async function load() {
-	const data = ["a", "b", "c"];
-	return { data };
+  // Perform PCA on dataset
+  // const irisPCA = new PCA(iris)
+
+	// Process data types
+	return {
+		iris: iris.map(autoType)
+    // iris
+	};
 }
